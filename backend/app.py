@@ -1,3 +1,4 @@
+
 from __future__ import annotations
 
 import math
@@ -812,7 +813,15 @@ def _amounts_close(a: Decimal, b: Decimal, tolerance: Decimal = Decimal("0.01"))
 
 app = create_app()
 
+# ... all your existing helper functions like _simplify_debts(), etc.
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    from dotenv import load_dotenv
+    import os
+
+    load_dotenv()
+    port = int(os.getenv("PORT", 10000))
+
+    app = create_app()
+    app.run(host="0.0.0.0", port=port)
 
