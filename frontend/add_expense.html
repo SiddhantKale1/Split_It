@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Add Expense | Split It</title>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <div class="layout">
+        <aside class="sidebar">
+          <h2>Split It</h2>
+          <nav>
+            <a href="dashboard.html">My Groups</a>
+            <a href="add_expense.html" class="active">Add Expense</a>
+          </nav>
+          <button class="secondary" id="logout-btn" type="button">Logout</button>
+        </aside>
+        <section class="content">
+          <div class="panel">
+            <h2>New Expense</h2>
+            <div class="alert error" id="expense-alert"></div>
+            <form class="form-grid" id="expense-form">
+              <label>
+                Group
+                <select name="group_id" required>
+                  <option value="" disabled selected>Select a group</option>
+                </select>
+              </label>
+              <label>
+                Title
+                <input type="text" name="title" placeholder="Dinner at hostel mess" required />
+              </label>
+              <label>
+                Amount
+                <input type="number" name="amount" min="0.01" step="0.01" placeholder="500.00" required />
+              </label>
+              <label>
+                Paid by
+                <select name="paid_by" required></select>
+              </label>
+              <section class="member-section">
+                <header class="member-section__header">
+                  <h3>Split members</h3>
+                  <p class="helper-text">
+                    Check who shares this expense and enter their share. Use “Split evenly” to auto-fill.
+                  </p>
+                </header>
+                <div class="member-grid" id="member-grid"></div>
+                <div class="inline">
+                  <button class="secondary" id="select-all-btn" type="button">Select all</button>
+                  <button id="split-even-btn" type="button">Split evenly</button>
+                </div>
+                <p class="helper-text">
+                  Optional: fill “Paid” if multiple people contributed. Leave blank to use the payer above.
+                </p>
+              </section>
+              <div class="inline">
+                <button type="submit">Save Expense</button>
+                <button class="secondary" id="restore-draft-btn" type="button">Restore draft</button>
+              </div>
+            </form>
+          </div>
+        </section>
+      </div>
+    </main>
+    <script src="js/api.js" type="module"></script>
+    <script src="js/storage.js" type="module"></script>
+    <script src="js/expense.js" type="module"></script>
+  </body>
+</html>
+

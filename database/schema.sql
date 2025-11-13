@@ -1,0 +1,68 @@
+CREATE DATABASE IF NOT EXISTS hostelsplit CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE hostelsplit;
+
+CREATE TABLE IF NOT EXISTS users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS `groups` (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    group_name VARCHAR(100) NOT NULL,
+    created_by INT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (created_by) REFERENCES users(id) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS group_members (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    group_id INT NOT NULL,
+    user_id INT NOT NULL,
+    joined_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE KEY unique_member_per_group (group_id, user_id),
+    FOREIGN KEY (group_id) REFERENCES `groups`(id) ON DELETE CASCADE,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS expenses (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    group_id INT NOT NULL,
+    title VARCHAR(100) NOT NULL,
+    amount DECIMAL(10,2) NOT NULL,
+    paid_by INT NOT NULL,
+    date_added DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (group_id) REFERENCES `groups`(id) ON DELETE CASCADE,
+    FOREIGN KEY (paid_by) REFERENCES users(id) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS expense_shares (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    expense_id INT NOT NULL,
+    user_id INT NOT NULL,
+    share_amount DECIMAL(10,2) NOT NULL,
+    FOREIGN KEY (expense_id) REFERENCES expenses(id) ON DELETE CASCADE,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS expense_contributions (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    expense_id INT NOT NULL,
+    user_id INT NOT NULL,
+    amount DECIMAL(10,2) NOT NULL,
+    FOREIGN KEY (expense_id) REFERENCES expenses(id) ON DELETE CASCADE,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS expense_payments (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    expense_id INT NOT NULL,
+    user_id INT NOT NULL,
+    amount DECIMAL(10,2) NOT NULL,
+    paid_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (expense_id) REFERENCES expenses(id) ON DELETE CASCADE,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+

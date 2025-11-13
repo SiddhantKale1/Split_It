@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login | Split It</title>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <section class="card">
+  <h1>Split It</h1>
+        <p class="lead">Welcome back — please sign in to continue.</p>
+        <div class="alert error" id="auth-alert"></div>
+        <form id="login-form">
+          <label>
+            Email
+            <input type="email" name="email" placeholder="you@example.com" required />
+          </label>
+          <label>
+            Password
+            <input type="password" name="password" placeholder="••••••••" required />
+          </label>
+          <div style="display:flex;gap:0.6rem;align-items:center;margin-top:0.5rem;">
+            <button type="submit">Login</button>
+            <a class="secondary" href="register.html">Create account</a>
+          </div>
+        </form>
+      </section>
+    </main>
+    <script src="js/api.js" type="module"></script>
+    <script src="js/login.js" type="module"></script>
+  </body>
+</html>

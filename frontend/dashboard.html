@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard | Split It</title>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <div class="layout">
+          <aside class="sidebar">
+          <h2>Split It</h2>
+          <div>
+            <div class="user-pill" id="user-pill">Logged in</div>
+          </div>
+          <nav>
+            <a href="dashboard.html" class="active">My Groups</a>
+            <a href="add_expense.html">Add Expense</a>
+          </nav>
+          <button class="secondary" id="logout-btn" type="button">Logout</button>
+        </aside>
+        <section class="content">
+          <div class="panel">
+            <div class="topbar">
+              <h2>Groups</h2>
+              <div class="inline">
+                <button id="create-group-btn" type="button">Create Group</button>
+                <button class="secondary" id="join-group-btn" type="button">Join Group</button>
+              </div>
+            </div>
+            <div class="group-list" id="group-list">
+              <div class="empty-state">No groups yet. Create one or join an existing group!</div>
+            </div>
+          </div>
+          <div class="panel">
+            <h2>Recent Activity</h2>
+            <div class="expense-list" id="recent-expenses">
+              <div class="empty-state">Add an expense to see it here.</div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <div class="modal-overlay" id="modal-overlay" hidden>
+      <div class="modal-card">
+        <form id="modal-form" class="form-grid">
+          <h2 id="modal-title"></h2>
+          <div id="modal-fields" class="form-grid"></div>
+          <div class="inline" style="justify-content: flex-end;">
+            <button class="secondary" type="button" id="modal-cancel">Cancel</button>
+            <button type="submit" id="modal-submit">Save</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script src="js/api.js" type="module"></script>
+    <script src="js/dashboard.js" type="module"></script>
+  </body>
+</html>
+

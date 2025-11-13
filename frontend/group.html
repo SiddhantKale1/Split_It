@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Group Details | Split It</title>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <div class="layout">
+          <aside class="sidebar">
+          <h2>Split It</h2>
+          <nav>
+            <a href="dashboard.html">My Groups</a>
+            <a href="add_expense.html">Add Expense</a>
+          </nav>
+          <button class="secondary" id="logout-btn" type="button">Logout</button>
+        </aside>
+        <section class="content">
+          <div class="panel">
+            <div class="topbar">
+              <div>
+                <h2 id="group-name">Group</h2>
+                <p class="meta" id="group-id"></p>
+              </div>
+              <a class="secondary" id="add-expense-link" href="add_expense.html">+ Add expense</a>
+            </div>
+            <div class="inline" id="member-list"></div>
+          </div>
+          <div class="panel">
+            <h2>Balances</h2>
+            <div class="balances" id="balance-list">
+              <div class="empty-state">Balances will appear after expenses are added.</div>
+            </div>
+          </div>
+          <div class="panel">
+            <h2>Who owes whom?</h2>
+            <div class="settlements" id="settlements">
+              <div class="empty-state">No settlements required yet.</div>
+            </div>
+          </div>
+          <div class="panel">
+            <h2>Expenses</h2>
+            <div class="expense-list" id="expense-list">
+              <div class="empty-state">No expenses yet. Add one to get started.</div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+    <script src="js/api.js" type="module"></script>
+    <script src="js/group.js" type="module"></script>
+  </body>
+</html>
+
