@@ -13,7 +13,7 @@ class Database:
             pool_name="hostelsplit_pool",
             pool_size=10,
             host=config.DB_HOST,
-            port=config.DB_PORT,
+            port=int(config.DB_PORT),  # ✅ Convert to integer
             user=config.DB_USER,
             password=config.DB_PASSWORD,
             database=config.DB_NAME,
@@ -58,4 +58,3 @@ class Database:
 
 
 db = Database()
-
